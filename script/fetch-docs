@@ -1,0 +1,7 @@
+#!/bin/sh
+
+VERSION=$(cat script/VERSION)
+URL="https://raw.githubusercontent.com/BespokeSynth/BespokeSynth/$VERSION/autodoc/module_documentation.json"
+
+echo "FETCHING TAG ${VERSION} AT ${URL}"
+curl -L -O $URL
