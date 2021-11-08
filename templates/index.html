@@ -77,8 +77,10 @@
             <% it.docs[slug].forEach((module)=> { %>
               <div class="px-8 mb-10 text-gray-200">
                 <h3 id="<%= module.slug %>" class="flex gap-1 py-2 font-bold text-white">
-                  <span class="<%= slug %>">//</span>
-                  <%= module.name %>
+                  <a href="#<%= module.slug %>">
+                    <span class="<%= slug %>">//</span>
+                    <%= module.name %>
+                  </a>
                 </h3>
                 <div class="text-sm text-gray-300">
                   <p class="pb-2 text-gray-400">
