@@ -14,5 +14,19 @@ const groups = Object.entries(docs).reduce((groups, [name, module]) => {
   return groups;
 }, {});
 
-const compiled = Eta.render(template, { docs: groups });
+const modules = [
+  "instruments",
+  "synths",
+  "modulators",
+  "pulse",
+  "note effects",
+  "audio effects",
+  "effect chain",
+  "other",
+];
+
+const compiled = Eta.render(template, {
+  docs: groups,
+  modules,
+});
 fs.writeFileSync(`./docs/${version}/index.html`, compiled);

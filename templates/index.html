@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,34 +9,48 @@
   <link rel="stylesheet" href="../style.css">
   <title>BespokeSynth Quick Reference</title>
 </head>
+
 <body>
-  <header>
-    <h1>BespokeSynth Quick Reference</h1>
-  </header>
+  <div class="wrapper">
+    <header>
+      <h1>BespokeSynth Quick Reference</h1>
+    </header>
 
-  <div class="layout">
     <aside>
-      <div class="instruments">
-        <h2>Instruments</h2>
-        <ol>
-        <% it.docs.instruments.forEach(function(instrument) { %>
-          <li class="p-10 <%= instrument.type %>">
-            <div class="flex">
-              <span class="type">&period;</span>
-              <h3><%= instrument.name %></h3>  
-            </div>
-          </li>
+      <% it.modules.forEach((module)=> { %>
+        <div class="all-instruments">
+          <h2 class="title title-<%= module.replace(/\s+/, '-') %>">
+            <%= module %>
+          </h2>
+          <ul>
+            <% it.docs[module].forEach(function(m) { %>
+              <li class="<%= m.type.replace(/\s+/, '-') %>">
+                <a href="#">
+                  <%= m.name %>
+                </a>
+              </li>
+              <% }) %>
+          </ul>
+        </div>
         <% }) %>
-        </ol>
-      </div>
     </aside>
-
-
-    <main>
-      I am main
+    <main class="p-20">
+      <% it.modules.forEach((module)=> { %>
+        <div>
+          <% it.docs[module].forEach(function(m) { %>
+            <div class="p-10 <%= m.type.replace(/\s+/, '-') %>">
+              <h3>
+                <%= m.name %>
+              </h3>
+              <p>
+                <%= m.description %>
+              </p>
+            </div>
+            <% }) %>
+        </div>
+        <% }) %>
     </main>
   </div>
-
-
 </body>
+
 </html>
