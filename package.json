@@ -5,8 +5,13 @@
   "main": "index.js",
   "watch": {
     "build": {
-      "patterns": ["templates"],
-      "extensions": ["css", "html"]
+      "patterns": [
+        "templates"
+      ],
+      "extensions": [
+        "css",
+        "html"
+      ]
     }
   },
   "scripts": {
