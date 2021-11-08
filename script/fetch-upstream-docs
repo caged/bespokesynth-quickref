@@ -3,5 +3,9 @@
 VERSION=$(cat script/VERSION)
 URL="https://raw.githubusercontent.com/BespokeSynth/BespokeSynth/$VERSION/autodoc/module_documentation.json"
 
+doc_dir="./docs/$VERSION"
+mkdir -p "$doc_dir"
+
 echo "FETCHING TAG ${VERSION} AT ${URL}"
-curl -L -O $URL
+
+curl -L -o "$doc_dir/docs.json" $URL

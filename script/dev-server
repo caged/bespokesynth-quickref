@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+// const path = require("path");
+// var livereload = require("livereload");
+
+// var server = livereload.createServer({
+//   debug: true,
+// });
+// server.watch(`${__dirname}/../templates`, () => {
+//   console.log("reload");
+// });

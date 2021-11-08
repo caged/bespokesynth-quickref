@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+const { log } = require("console");
+const Eta = require("eta");
+const fs = require("fs");
+
+version = "v1.0.0";
+
+const template = fs.readFileSync("./templates/index.html", "utf8");
+const docs = JSON.parse(fs.readFileSync(`./docs/${version}/docs.json`, "utf8"));
+
+const groups = Object.entries(docs).reduce((groups, [name, module]) => {
+  groups[module.type] ||= [];
+  groups[module.type].push({ name, ...module });
+  return groups;
+}, {});
+
+const compiled = Eta.render(template, { docs: groups });
+fs.writeFileSync(`./docs/${version}/index.html`, compiled);
