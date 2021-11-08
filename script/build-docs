@@ -8,9 +8,15 @@ version = "v1.0.0";
 const template = fs.readFileSync("./templates/index.html", "utf8");
 const docs = JSON.parse(fs.readFileSync(`./docs/${version}/docs.json`, "utf8"));
 
+function slugify(str) {
+  return str.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+}
+
 const groups = Object.entries(docs).reduce((groups, [name, module]) => {
-  groups[module.type] ||= [];
-  groups[module.type].push({ name, ...module });
+  const tslug = slugify(module.type);
+  const nslug = slugify(name);
+  groups[tslug] ||= [];
+  groups[tslug].push({ name, typeslug: tslug, slug: nslug, ...module });
   return groups;
 }, {});
 
@@ -23,7 +29,13 @@ const modules = [
   "audio effects",
   "effect chain",
   "other",
-];
+].map((name) => {
+  const slug = slugify(name);
+  return {
+    name,
+    slug,
+  };
+});
 
 const compiled = Eta.render(template, {
   docs: groups,

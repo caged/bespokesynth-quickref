@@ -4,12 +4,11 @@
   "description": "",
   "main": "index.js",
   "watch": {
-    "build": {
+    "build-docs": {
       "patterns": [
         "templates"
       ],
       "extensions": [
-        "css",
         "html"
       ]
     }
@@ -17,7 +16,8 @@
   "scripts": {
     "watch": "npm-watch",
     "start": "http-server docs",
-    "build": "node script/build-docs"
+    "build-docs": "node script/build-docs",
+    "build-css": "postcss templates/style.css -o docs/v1.0.0/style.css"
   },
   "repository": {
     "type": "git",
@@ -30,10 +30,15 @@
   },
   "homepage": "https://github.com/caged/bespokesynth-quickref#readme",
   "devDependencies": {
+    "concurrently": "^6.3.0",
     "http-server": "^14.0.0",
     "npm-watch": "^0.11.0"
   },
   "dependencies": {
-    "eta": "^1.12.3"
+    "autoprefixer": "^10.4.0",
+    "eta": "^1.12.3",
+    "postcss-cli": "^9.0.2",
+    "tailwindcss": "^2.2.19",
+    "watch": "^1.0.2"
   }
 }

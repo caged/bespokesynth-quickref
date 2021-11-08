@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.instruments {
+  @apply text-pink-500;
+}
+
+.note-effects {
+  @apply text-yellow-500;
+}
+
+.synths {
+  @apply text-green-500;
+}
+
+.modulators {
+  @apply text-purple-500;
+}
+
+.pulse {
+  @apply text-yellow-300;
+}
+
+.audio-effects {
+  @apply text-blue-500;
+}
+
+.effect-chain {
+  @apply text-indigo-500;
+}
+
+.other {
+  @apply text-gray-500;
+}
+
+.receives-audio {
+  @apply text-blue-500;
+}
+
+.receives-note {
+  @apply text-pink-500;
+}
+
+.receives-pulses {
+  @apply text-yellow-300;
+}

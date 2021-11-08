@@ -5,51 +5,70 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../normalize.css">
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="style.css">
   <title>BespokeSynth Quick Reference</title>
 </head>
 
-<body>
-  <div class="wrapper">
-    <header>
-      <h1>BespokeSynth Quick Reference</h1>
+<body class="bg-gray-900 text-gray-50">
+  <div>
+    <header class="flex p-5 bg-gray-900 text-white">
+      <h1 class="text-xl font-bold">BespokeSynth Quick Reference</h1>
     </header>
-
-    <aside>
-      <% it.modules.forEach((module)=> { %>
-        <div class="all-instruments">
-          <h2 class="title title-<%= module.replace(/\s+/, '-') %>">
-            <%= module %>
-          </h2>
-          <ul>
-            <% it.docs[module].forEach(function(m) { %>
-              <li class="<%= m.type.replace(/\s+/, '-') %>">
-                <a href="#">
-                  <%= m.name %>
-                </a>
-              </li>
-              <% }) %>
-          </ul>
-        </div>
-        <% }) %>
-    </aside>
-    <main class="p-20">
-      <% it.modules.forEach((module)=> { %>
-        <div>
-          <% it.docs[module].forEach(function(m) { %>
-            <div class="p-10 <%= m.type.replace(/\s+/, '-') %>">
-              <h3>
-                <%= m.name %>
-              </h3>
-              <p>
-                <%= m.description %>
-              </p>
-            </div>
-            <% }) %>
-        </div>
-        <% }) %>
-    </main>
+    <div class="flex">
+      <aside class="flex-initial border-r border-gray-800">
+        <% it.modules.forEach(({name, slug})=> { %>
+          <div>
+            <h2 class="p-2 font-bold capitalize">
+              <%= name %>
+            </h2>
+            <ul>
+              <% it.docs[slug].forEach((module)=> { %>
+                <li>
+                  <a class="flex gap-1 p-2 border-b border-gray-800 text-base" href="#<%= module.slug %>">
+                    <span class="<%= slug %>">//</span>
+                    <span class="flex-1">
+                      <%= module.name %>
+                    </span>
+                    <span class="flex gap-2">
+                      <span class="w-4 h-4">
+                        <% if(module.canReceiveAudio) { %>
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 receives-audio" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                              d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z"
+                              clip-rule="evenodd" />
+                          </svg>
+                          <% } %>
+                      </span>
+                      <span class="w-4 h-4">
+                        <% if(module.canReceiveNote) { %>
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-5 receives-note" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path
+                              d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z" />
+                          </svg>
+                          <% } %>
+                      </span>
+                      <span class="w-4 h-4">
+                        <% if(module.canReceivePulses) { %>
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 receives-pulses" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                              d="M5.05 3.636a1 1 0 010 1.414 7 7 0 000 9.9 1 1 0 11-1.414 1.414 9 9 0 010-12.728 1 1 0 011.414 0zm9.9 0a1 1 0 011.414 0 9 9 0 010 12.728 1 1 0 11-1.414-1.414 7 7 0 000-9.9 1 1 0 010-1.414zM7.879 6.464a1 1 0 010 1.414 3 3 0 000 4.243 1 1 0 11-1.415 1.414 5 5 0 010-7.07 1 1 0 011.415 0zm4.242 0a1 1 0 011.415 0 5 5 0 010 7.072 1 1 0 01-1.415-1.415 3 3 0 000-4.242 1 1 0 010-1.415zM10 9a1 1 0 011 1v.01a1 1 0 11-2 0V10a1 1 0 011-1z"
+                              clip-rule="evenodd" />
+                          </svg>
+                          <% } %>
+                      </span>
+                    </span>
+                  </a>
+                </li>
+                <% }) %>
+            </ul>
+          </div>
+          <% }) %>
+      </aside>
+      <main class=" flex-1">main</main>
+    </div>
   </div>
 </body>
 
